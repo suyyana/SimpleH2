@@ -197,7 +197,7 @@
     
         <p class="code-caption">Cleartext</p>
     
-    <pre class="prettyprint"><code>const simpleH2 = require('simpleH2');
+    <pre class="prettyprint"><code>const simpleH2 = require('@forge-io/simpleh2');
 const srv = new simpleH2.Server();
 srv.get('/', (stream, headers, params, next) => {
   next('Hello, world!');
@@ -207,7 +207,7 @@ srv.listen(3001);</code></pre>
         <p class="code-caption">With SSL</p>
     
     <pre class="prettyprint"><code>const fs = require('fs');
-const simpleH2 = require('simpleH2');
+const simpleH2 = require('@forge-io/simpleh2');
 const srv = new simpleH2.Server({
   key: fs.readFileSync('key.private.pem', 'utf8'),
   cert: fs.readFileSync('cert.pem', 'utf8'),
@@ -253,7 +253,7 @@ srv.listen(3001);</code></pre>
 
 
 <div class="description">
-    Stops the {Server} listening
+    Stops the {SimpleH2Server} listening
 </div>
 
 
@@ -333,7 +333,7 @@ srv.listen(3001);</code></pre>
     
 
     
-    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(path, handler)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(path, handler, opts)</span><span class="type-signature"></span></h4>
     
 
     
@@ -417,6 +417,29 @@ srv.listen(3001);</code></pre>
             
 
             <td class="description last">The method to handle the requests</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#HandlerOptions">HandlerOptions</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Handler options</td>
         </tr>
 
     
@@ -508,7 +531,7 @@ srv.listen(3001);</code></pre>
 
 
 <div class="description">
-    Starts the {Server} listening
+    Starts the {SimpleH2Server} listening
 </div>
 
 
@@ -827,6 +850,196 @@ srv.listen(3001);</code></pre>
     
 
     
+    <h4 class="name" id="put"><span class="type-signature"></span>put<span class="signature">(path, handler, opts)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a PUT handler
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The path to bind to</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>handler</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#SimpleH2Handler">SimpleH2Handler</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The method to handle the requests</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#HandlerOptions">HandlerOptions</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Handler options</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Server_index.js.html">Server/index.js</a>, <a href="Server_index.js.html#line199">line 199</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>srv.put('/put-handler', (stream, headers, params, next) => {
+  stream.end(putResponse);
+}, { bufferBody: true });</code></pre>
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="use"><span class="type-signature"></span>use<span class="signature">(middleware)</span><span class="type-signature"></span></h4>
     
 
@@ -928,7 +1141,7 @@ srv.listen(3001);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Server_index.js.html">Server/index.js</a>, <a href="Server_index.js.html#line202">line 202</a>
+        <a href="Server_index.js.html">Server/index.js</a>, <a href="Server_index.js.html#line212">line 212</a>
     </li></ul></dd>
     
 

@@ -20,7 +20,7 @@ npm install @forge-io/simpleh2
 
 ### HTTP2
 ```js
-const simpleH2 = require('simpleH2');
+const simpleH2 = require('@forge-io/simpleh2');
 const srv = new simpleH2.Server();
 srv.get('/', (stream, headers, params, next) => {
   next('Hello, world!');
@@ -31,7 +31,7 @@ srv.listen(3001);
 ### HTTP2 With SSL
 ```js
 const fs = require('fs');
-const simpleH2 = require('simpleH2');
+const simpleH2 = require('@forge-io/simpleh2');
 const srv = new simpleH2.Server({
   key: fs.readFileSync('key.private.pem', 'utf8'),
   cert: fs.readFileSync('cert.pem', 'utf8'),

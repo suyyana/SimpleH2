@@ -1,7 +1,7 @@
 const getPort = require('get-port');
 const http2 = require('http2');
 const url = require('url');
-const { http2get, http2post } = require('./utils/index.js');
+const { http2get, http2post, http2put } = require('./utils/index.js');
 
 const mod = require('../');
 
@@ -43,6 +43,12 @@ describe('the Server', () => {
   it('responds with 404', async () => {
     expect.assertions(1);
     const resp = await http2get(`http://127.0.0.1:${port}/404-not-found`);
+    expect(resp.body).toEqual('Not found.');
+  });
+
+  it('responds with 404 when the method is not found', async () => {
+    expect.assertions(1);
+    const resp = await http2post(`http://127.0.0.1:${port}/hello`, 'POSTDATA');
     expect(resp.body).toEqual('Not found.');
   });
 
@@ -136,5 +142,17 @@ describe('the Server', () => {
     }, { bufferBody: true });
     const resp = await http2post(`http://127.0.0.1:${port}${testPath}`, postData);
     expect(resp.body).toEqual(postResponse);
+  });
+
+  it('handles a put body', async () => {
+    expect.assertions(1);
+    const testPath = '/put-body';
+    const putData = 'ThisIsSomePuttData';
+    const putResponse = 'PUT RECIEVED';
+    srv.put(testPath, (stream, headers, params, next) => {
+      stream.end(putResponse);
+    });
+    const resp = await http2put(`http://127.0.0.1:${port}${testPath}`, putData);
+    expect(resp.body).toEqual(putResponse);
   });
 });

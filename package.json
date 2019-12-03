@@ -7,6 +7,7 @@
     "lint": "eslint ./lib",
     "lint:fix": "eslint --fix ./lib",
     "test": "jest --coverage",
+    "coverage": "jest --coverage || xdg-open coverage/lcov-report/index.html",
     "docs": "jsdoc -c jsdoc.json -R README.md",
     "docs:pub": "jsdoc -c jsdoc.json -R README.md && git add docs/* && git commit -m 'Update docs' && git push origin master",
     "pub": "npm run lint && npm run test && npm run docs && npm publish --access public"
@@ -28,7 +29,8 @@
     }
   },
   "keywords": [
-    "HTTP2"
+    "HTTP2",
+    "router"
   ],
   "author": "DanBUK <dan@forge.io>",
   "license": "GPL-3.0",

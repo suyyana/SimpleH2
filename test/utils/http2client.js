@@ -4,21 +4,19 @@ const url = require('url');
 const fs = require('fs');
 const path = require('path');
 
-const http2get = (uri) => new Promise((resolve, reject) => {
+const http2client = (uri, method = 'GET', data = '') => new Promise((resolve, reject) => {
   const urlParsed = url.parse(uri);
-  // console.dir(urlParsed);
   const options = {};
   if (urlParsed.protocol === 'https:') {
     const caFolder = path.normalize(path.join(__dirname, '..', '.ca.data.folder'));
     options.ca = fs.readFileSync(path.join(caFolder, 'cacert.pem'), 'utf8');
   }
-  // console.dir(options);
   const client = http2.connect(uri, options);
   client.on('error', (err) => {
     console.error('http2.client error:', err);
     reject(err);
   });
-  const req = client.request({ ':path': urlParsed.path });
+  const req = client.request({ ':path': urlParsed.path, ':method': method });
   let headers = null;
   let flags = null;
   req.on('response', (h, f) => {
@@ -37,8 +35,9 @@ const http2get = (uri) => new Promise((resolve, reject) => {
       body: buff
     });
   });
+  if (method !== 'GET') req.write(data);
   req.end();
 });
 
 
-module.exports = http2get;
+module.exports = http2client;
