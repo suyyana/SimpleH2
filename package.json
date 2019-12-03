@@ -1,13 +1,14 @@
 {
   "name": "@forge-io/simpleh2",
   "version": "0.1.2",
-  "description": "A simple HTTP2 router and client for nodejs",
+  "description": "A simple HTTP2 router for nodejs",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint ./lib",
     "lint:fix": "eslint --fix ./lib",
     "test": "jest --coverage",
-    "docs": "jsdoc -c jsdoc.json",
+    "docs": "jsdoc -c jsdoc.json -R README.md",
+    "docs:pub": "jsdoc -c jsdoc.json -R README.md && git add docs/* && git commit -m 'Update docs' && git push origin master",
     "pub": "npm run lint && npm run test && npm run docs && npm publish --access public"
   },
   "jest": {
