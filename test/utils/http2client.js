@@ -35,7 +35,7 @@ const http2client = (uri, method = 'GET', data = '') => new Promise((resolve, re
       body: buff
     });
   });
-  if (method !== 'GET') req.write(data);
+  if (['POST', 'PUT'].indexOf(method) > -1) req.write(data);
   req.end();
 });
 

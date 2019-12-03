@@ -229,6 +229,20 @@ class SimpleH2Server {
   }
 
   /**
+   * Add a DELETE handler
+   * @param {string} path The path to bind to
+   * @param {SimpleH2Handler} handler The method to handle the requests
+   * @param {HandlerOptions} opts Handler options
+   * @example
+   * srv.delete('/delete-handler', (stream, headers, params, next) => {
+   *   stream.end(putResponse);
+   * }, { bufferBody: true });
+   */
+  delete(path, handler, opts = {}) {
+    this.tree.add(path, 'DELETE', applyOptionsToHandler(handler, opts));
+  }
+
+  /**
    * Add a global Middleware handler
    * @param {function} middleware The method to handle on all requests
    * @example

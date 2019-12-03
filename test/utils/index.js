@@ -8,5 +8,8 @@ module.exports = {
   },
   http2put: (url, data) => {
     return http2client(url, 'PUT', data);
+  },
+  http2delete: (url) => {
+    return http2client(url, 'DELETE');
   }
 };

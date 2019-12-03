@@ -333,6 +333,196 @@ srv.listen(3001);</code></pre>
     
 
     
+    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">(path, handler, opts)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Add a DELETE handler
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>path</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The path to bind to</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>handler</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#SimpleH2Handler">SimpleH2Handler</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The method to handle the requests</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#HandlerOptions">HandlerOptions</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Handler options</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Server_index.js.html">Server/index.js</a>, <a href="Server_index.js.html#line213">line 213</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>srv.delete('/delete-handler', (stream, headers, params, next) => {
+  stream.end(putResponse);
+}, { bufferBody: true });</code></pre>
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(path, handler, opts)</span><span class="type-signature"></span></h4>
     
 
@@ -1141,7 +1331,7 @@ srv.listen(3001);</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Server_index.js.html">Server/index.js</a>, <a href="Server_index.js.html#line212">line 212</a>
+        <a href="Server_index.js.html">Server/index.js</a>, <a href="Server_index.js.html#line226">line 226</a>
     </li></ul></dd>
     
 

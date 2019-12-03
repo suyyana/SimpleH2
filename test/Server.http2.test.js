@@ -1,7 +1,7 @@
 const getPort = require('get-port');
 const http2 = require('http2');
 const url = require('url');
-const { http2get, http2post, http2put } = require('./utils/index.js');
+const { http2get, http2post, http2put, http2delete } = require('./utils/index.js');
 
 const mod = require('../');
 
@@ -147,12 +147,23 @@ describe('the Server', () => {
   it('handles a put body', async () => {
     expect.assertions(1);
     const testPath = '/put-body';
-    const putData = 'ThisIsSomePuttData';
+    const putData = 'ThisIsSomePutData';
     const putResponse = 'PUT RECIEVED';
     srv.put(testPath, (stream, headers, params, next) => {
       stream.end(putResponse);
     });
     const resp = await http2put(`http://127.0.0.1:${port}${testPath}`, putData);
     expect(resp.body).toEqual(putResponse);
+  });
+
+  it('handles a delete request', async () => {
+    expect.assertions(1);
+    const testPath = '/delete';
+    const deleteResponse = 'DELETE RECIEVED';
+    srv.delete(testPath, (stream, headers, params, next) => {
+      stream.end(deleteResponse);
+    });
+    const resp = await http2delete(`http://127.0.0.1:${port}${testPath}`);
+    expect(resp.body).toEqual(deleteResponse);
   });
 });
