@@ -7,7 +7,7 @@
     "lint": "eslint ./lib",
     "lint:fix": "eslint --fix ./lib",
     "test": "jest --coverage",
-    "docs": "rm -Rf docs/* && jsdoc -c jsdoc.json",
+    "docs": "jsdoc -c jsdoc.json",
     "pub": "npm run lint && npm run test && npm run docs && npm publish --access public"
   },
   "jest": {
