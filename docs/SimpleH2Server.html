@@ -197,7 +197,7 @@
     
         <p class="code-caption">Cleartext</p>
     
-    <pre class="prettyprint"><code>const simpleH2 = require('simpleH2');
+    <pre class="prettyprint"><code>const simpleH2 = require('@forge-io/simpleh2');
 const srv = new simpleH2.Server();
 srv.get('/', (stream, headers, params, next) => {
   next('Hello, world!');
@@ -207,7 +207,7 @@ srv.listen(3001);</code></pre>
         <p class="code-caption">With SSL</p>
     
     <pre class="prettyprint"><code>const fs = require('fs');
-const simpleH2 = require('simpleH2');
+const simpleH2 = require('@forge-io/simpleh2');
 const srv = new simpleH2.Server({
   key: fs.readFileSync('key.private.pem', 'utf8'),
   cert: fs.readFileSync('cert.pem', 'utf8'),

@@ -58,7 +58,7 @@
 </code></pre>
 <h2>Example</h2>
 <h3>HTTP2</h3>
-<pre class="prettyprint source lang-js"><code>const simpleH2 = require('simpleH2');
+<pre class="prettyprint source lang-js"><code>const simpleH2 = require('@forge-io/simpleh2');
 const srv = new simpleH2.Server();
 srv.get('/', (stream, headers, params, next) => {
   next('Hello, world!');
@@ -67,7 +67,7 @@ srv.listen(3001);
 </code></pre>
 <h3>HTTP2 With SSL</h3>
 <pre class="prettyprint source lang-js"><code>const fs = require('fs');
-const simpleH2 = require('simpleH2');
+const simpleH2 = require('@forge-io/simpleh2');
 const srv = new simpleH2.Server({
   key: fs.readFileSync('key.private.pem', 'utf8'),
   cert: fs.readFileSync('cert.pem', 'utf8'),

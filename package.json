@@ -28,7 +28,8 @@
     }
   },
   "keywords": [
-    "HTTP2"
+    "HTTP2",
+    "router"
   ],
   "author": "DanBUK <dan@forge.io>",
   "license": "GPL-3.0",
