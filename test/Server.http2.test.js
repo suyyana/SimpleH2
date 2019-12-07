@@ -13,6 +13,22 @@ const helloWorld = (stream, headers, params, next) => {
   stream.end('Hello, world!');
 };
 
+const helloWorldRouteTree = {
+  '/hello': {
+    methods: {
+      GET: helloWorld
+    }
+  },
+  '/branch': {
+    '/leafA': {
+      methods: { GET: helloWorld }
+    },
+    '/leafB': {
+      methods: { GET: helloWorld }
+    }
+  }
+};
+
 describe('the Server', () => {
   let srv = null;
   let port = null;
@@ -26,7 +42,7 @@ describe('the Server', () => {
   beforeEach(async () => {
     port = await getPort();
     srv = new mod.Server();
-    srv.get('/hello', helloWorld);
+    srv.addRoutes(helloWorldRouteTree);
     srv.listen(port);
   });
 
@@ -165,5 +181,12 @@ describe('the Server', () => {
     });
     const resp = await http2delete(`http://127.0.0.1:${port}${testPath}`);
     expect(resp.body).toEqual(deleteResponse);
+  });
+
+  it('serves a simple Hello world after adding via .add', async () => {
+    expect.assertions(1);
+    srv.add('/hello-add', 'GET', helloWorld);
+    const resp = await http2get(`http://127.0.0.1:${port}/hello-add`);
+    expect(resp.body).toEqual('Hello, world!');
   });
 });
